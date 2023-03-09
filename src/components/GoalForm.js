@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const GoalForm = () => {
+const GoalForm = ({setAllGoalsProps,allGoalsProps}) => {
     const [formData, setFormData] = useState({
       goal: "",
       by: ""
@@ -14,14 +14,15 @@ const GoalForm = () => {
     }
     const onButtonAdd = e => {
       e.preventDefault();
-      setFormData({...formData ,goal:e.target.value});
+      setAllGoalsProps([...allGoalsProps,formData]);
+      setFormData({goal:"",by:""})
     }
     
   
     return (
       <>
         <h1>My Goals</h1>
-        <form onSubmit={handleForm(e)} >
+        <form >
           <input 
             type="text" 
             name='goal' 
