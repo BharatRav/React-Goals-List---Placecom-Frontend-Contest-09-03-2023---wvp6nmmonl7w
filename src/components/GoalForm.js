@@ -5,22 +5,38 @@ const GoalForm = () => {
       goal: "",
       by: ""
     });
+
+    const onGoalChange = e => {
+      setFormData({...formData ,goal:e.target.value});
+    }
+    const onByChange = e => {
+      setFormData({...formData ,by:e.target.value});
+    }
+    const onButtonAdd = e => {
+      e.preventDefault();
+      setFormData({...formData ,goal:e.target.value});
+    }
+    
   
     return (
       <>
         <h1>My Goals</h1>
-        <form>
+        <form onSubmit={handleForm(e)} >
           <input 
             type="text" 
             name='goal' 
             placeholder='Goal...' 
+            value={formData.goal}
+            onChange ={onGoalChange}
           />
           <input 
             type="text"
             name="by"
             placeholder='By...'
+            value={formData.by}
+            onChange ={onByChange}
           />
-          <button>Add</button>
+          <button onClick={onButtonAdd}>Add</button>
         </form>
       </>
     )
